@@ -12,7 +12,7 @@ The project demonstrates real-world use of **functions**, **arrays**, **strings*
 |-------------|------------------------------------------------------------------------------|
 | Sipho       | Set up initial project structure, implemented user login & authentication.  |
 | Tejiri      | Wrote `withdraw()` and `check_balance()` functions, built ATM menu system.  |
-| Shafii      | Handled `deposit()` function and helped debug logic for transaction actions.|
+| Shafii      | Implemented `deposit()` function, added transaction logging logic, fixed login flow, and assisted with overall debugging and testing|
 
 Each member actively participated in the logic planning and testing phases. Git was used for version control, and all work was tracked in the commit history.
 
