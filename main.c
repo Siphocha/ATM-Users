@@ -26,6 +26,16 @@ int main() {
     char username3[] = "Shafii";
     int passsword3[] = 3;
 
+    // memory declarations on pre-defined usernames and password
+    int inputPassword1[1];
+    char inputUsername1[5];
+
+    int inputPassword2[1];
+    char inputUsername2[5];
+
+    int inputPassword3[1];
+    char inputUsername3[5];
+
 
 
 }
