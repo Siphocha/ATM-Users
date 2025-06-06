@@ -19,12 +19,15 @@ int main() {
     //Pre-defined user list
     char username1[] = "Sipho";
     int password1[] = 1;
+    int amount1[] = 500;
 
     char username2[] = "Tejiri";
     int password2[] = 2;
+    int amount2[] = 500;
 
     char username3[] = "Shafii";
     int passsword3[] = 3;
+    int amount3[] = 500;
 
     // memory declarations on pre-defined usernames and password
     int inputPassword1[1];
@@ -36,6 +39,12 @@ int main() {
     int inputPassword3[1];
     char inputUsername3[5];
 
+}
 
-
+//Deposit declared on how the user can deposit
+void deposit(float *balance) {
+    float amount;
+    //amount is reiterated as usage place for deposit
+    printf("Amount to Deposit: $");
+    scanf("%f", &amount);
 }
