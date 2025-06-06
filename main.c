@@ -1,19 +1,19 @@
 #include <stdio.h>
 #include <string.h> 
 
-#define MAX_USERS 2 
+#define MAX_USERS 3
 #define MAX_TRANSACTIONS 10 
 
-// Predefined usernames and PINs 
-char usernames[MAX_USERS][20] = {"alice", "bob"};
-char pins[MAX_USERS][5] = {"1234", "4321"};
-float balances[MAX_USERS] = {500.0, 1000.0}; 
+//Predefined users
+char usernames[MAX_USERS][30] = {"Shafi", "Sipho", "Tejiri"};
+char pins[MAX_USERS][5] = {"1234", "7777", "4321"};
+float balances[MAX_USERS] = {500.0, 1000.0, 2.00};
 
-// Transaction log 
+//memory allocation of transaction logs
 char transactions[MAX_TRANSACTIONS][100];
 int transaction_count = 0;
 
-// Function declarations
+//Declaring functions
 void checking_balance(float balance);
 void depositing(float *balance);
 void withdrawing(float *balance);
@@ -21,12 +21,12 @@ int login();
 void log_transaction(const char *desc); 
 void view_transactions(); 
 
-// Check balance
+//Check Balance
 void checking_balance(float balance) {
     printf("Your current balance is: $%.2f\n", balance);
 }
 
-// Deposit
+//Depositing amount
 void depositing(float *balance) {
     float amount;
     printf("Amount to Deposit: $");
@@ -45,7 +45,7 @@ void depositing(float *balance) {
     }
 }
 
-// Withdraw 
+//Withdraw certain amount
 void withdrawing(float *balance) {
     float amount;
     printf("Amount to Withdraw: $");
@@ -59,14 +59,14 @@ void withdrawing(float *balance) {
         *balance -= amount;
         printf("Withdrawn: $%.2f\n", amount);
 
-        // Log transaction
+        //Transaction logs listing out
         char desc[100];
         sprintf(desc, "Withdrew: $%.2f", amount);
         log_transaction(desc);
     }
 }
 
-// Login function 
+//Function for logging in
 int login() {
     char input_user[20], input_pin[5];
     printf("Username: ");
@@ -85,7 +85,7 @@ int login() {
     return -1;
 }
 
-// Log transaction
+//Log transaction thereafter
 void log_transaction(const char *desc) {
     if (transaction_count < MAX_TRANSACTIONS) {
         strcpy(transactions[transaction_count], desc);
@@ -93,7 +93,7 @@ void log_transaction(const char *desc) {
     }
 }
 
-// View transaction history 
+//Viewing the transaction history
 void view_transactions() {
     printf("\n-- Transaction History --\n");
     if (transaction_count == 0) {
@@ -150,7 +150,7 @@ int main() {
 
     } while(option != 4);
 
-    // Update balance back to user
+    //Updating balance back to that specific users account
     balances[user_index] = current_balance;
 
     return 0;
