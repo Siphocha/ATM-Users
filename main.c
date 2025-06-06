@@ -1,50 +1,76 @@
 #include <stdio.h>
 
-//check the balance
+// Function declarations
 void checking_balance(float balance);
-//* only for when the function needs to edit value
 void depositing(float *balance);
-//depositing and withdrawing function declarations
 void withdrawing(float *balance);
 
-
-struct Users { //THIS MAY BE UNECESSARY AS WE NEED PREDEFINED USERS TECHNICALLY.
-    //establishing user data structure for use later
-    char name[];
-    int password;
-    struct User *next;
-};
-
-int main() {
-    //Pre-defined user list
-    char username1[] = "Sipho";
-    int password1[] = 1;
-    int amount1[] = 500;
-
-    char username2[] = "Tejiri";
-    int password2[] = 2;
-    int amount2[] = 500;
-
-    char username3[] = "Shafii";
-    int passsword3[] = 3;
-    int amount3[] = 500;
-
-    // memory declarations on pre-defined usernames and password
-    int inputPassword1[1];
-    char inputUsername1[5];
-
-    int inputPassword2[1];
-    char inputUsername2[5];
-
-    int inputPassword3[1];
-    char inputUsername3[5];
-
+// Check balance
+void checking_balance(float balance) {
+    printf("Your current balance is: $%.2f\n", balance);
 }
 
-//Deposit declared on how the user can deposit
-void deposit(float *balance) {
+// Deposit
+void depositing(float *balance) {
     float amount;
-    //amount is reiterated as usage place for deposit
     printf("Amount to Deposit: $");
     scanf("%f", &amount);
+
+    if (amount <= 0) {
+        printf("Invalid deposit amount.\n");
+    } else {
+        *balance += amount;
+        printf("Deposited: $%.2f\n", amount);
+    }
+}
+
+// Withdraw (YOUR PART)
+void withdrawing(float *balance) {
+    float amount;
+    printf("Amount to Withdraw: $");
+    scanf("%f", &amount);
+
+    if (amount <= 0) {
+        printf("Invalid amount.\n");
+    } else if (amount > *balance) {
+        printf("Insufficient funds.\n");
+    } else {
+        *balance -= amount;
+        printf("Withdrawn: $%.2f\n", amount);
+    }
+}
+
+int main() {
+    float current_balance = 500.0;
+    int option;
+
+    do {
+        printf("\n==== ATM MENU ====\n");
+        printf("1. Check Balance\n");
+        printf("2. Deposit\n");
+        printf("3. Withdraw\n");
+        printf("4. Exit\n");
+        printf("Choose an option: ");
+        scanf("%d", &option);
+
+        switch(option) {
+            case 1:
+                checking_balance(current_balance);
+                break;
+            case 2:
+                depositing(&current_balance);
+                break;
+            case 3:
+                withdrawing(&current_balance); // ← YOUR FUNCTION
+                break;
+            case 4:
+                printf("Thank you for using the ATM.\n");
+                break;
+            default:
+                printf("Invalid option. Try again.\n");
+        }
+
+    } while(option != 4);
+
+    return 0;
 }
