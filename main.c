@@ -83,6 +83,19 @@ void log_transaction(const char *desc) {
     }
 }
 
+
+// View transaction history 
+void view_transactions() {
+    printf("\n-- Transaction History --\n");
+    if (transaction_count == 0) {
+        printf("No transactions yet.\n");
+    } else {
+        for (int i = 0; i < transaction_count; i++) {
+            printf("%d. %s\n", i + 1, transactions[i]);
+        }
+    }
+}
+
 int main() {
     float current_balance = 500.0;
     int option;
