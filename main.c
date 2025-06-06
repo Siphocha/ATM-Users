@@ -1,9 +1,25 @@
 #include <stdio.h>
+#include <string.h> 
+
+#define MAX_USERS 2 
+#define MAX_TRANSACTIONS 10 
+
+// Predefined usernames and PINs 
+char usernames[MAX_USERS][20] = {"alice", "bob"};
+char pins[MAX_USERS][5] = {"1234", "4321"};
+float balances[MAX_USERS] = {500.0, 1000.0}; 
+
+// Transaction log 
+char transactions[MAX_TRANSACTIONS][100];
+int transaction_count = 0;
 
 // Function declarations
 void checking_balance(float balance);
 void depositing(float *balance);
 void withdrawing(float *balance);
+int login(); 
+void log_transaction(const char *desc); 
+void view_transactions(); 
 
 // Check balance
 void checking_balance(float balance) {
