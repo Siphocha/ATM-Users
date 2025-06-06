@@ -40,7 +40,7 @@ void depositing(float *balance) {
     }
 }
 
-// Withdraw (YOUR PART)
+// Withdraw 
 void withdrawing(float *balance) {
     float amount;
     printf("Amount to Withdraw: $");
@@ -54,6 +54,25 @@ void withdrawing(float *balance) {
         *balance -= amount;
         printf("Withdrawn: $%.2f\n", amount);
     }
+}
+
+// Login function 
+int login() {
+    char input_user[20], input_pin[5];
+    printf("Username: ");
+    scanf("%s", input_user);
+    printf("PIN (4-digit): ");
+    scanf("%s", input_pin);
+
+    for (int i = 0; i < MAX_USERS; i++) {
+        if (strcmp(input_user, usernames[i]) == 0 && strcmp(input_pin, pins[i]) == 0) {
+            printf("Login successful. Welcome, %s!\n", input_user);
+            return i;
+        }
+    }
+
+    printf("Login failed. Try again.\n");
+    return -1;
 }
 
 int main() {
