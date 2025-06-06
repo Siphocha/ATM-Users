@@ -75,6 +75,14 @@ int login() {
     return -1;
 }
 
+// Log transaction (Added)
+void log_transaction(const char *desc) {
+    if (transaction_count < MAX_TRANSACTIONS) {
+        strcpy(transactions[transaction_count], desc);
+        transaction_count++;
+    }
+}
+
 int main() {
     float current_balance = 500.0;
     int option;
