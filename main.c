@@ -37,6 +37,11 @@ void depositing(float *balance) {
     } else {
         *balance += amount;
         printf("Deposited: $%.2f\n", amount);
+
+        // Log transaction
+        char desc[100];
+        sprintf(desc, "Deposited: $%.2f", amount);
+        log_transaction(desc);
     }
 }
 
@@ -53,6 +58,11 @@ void withdrawing(float *balance) {
     } else {
         *balance -= amount;
         printf("Withdrawn: $%.2f\n", amount);
+
+        // Log transaction
+        char desc[100];
+        sprintf(desc, "Withdrew: $%.2f", amount);
+        log_transaction(desc);
     }
 }
 
@@ -75,14 +85,13 @@ int login() {
     return -1;
 }
 
-// Log transaction (Added)
+// Log transaction
 void log_transaction(const char *desc) {
     if (transaction_count < MAX_TRANSACTIONS) {
         strcpy(transactions[transaction_count], desc);
         transaction_count++;
     }
 }
-
 
 // View transaction history 
 void view_transactions() {
@@ -97,8 +106,17 @@ void view_transactions() {
 }
 
 int main() {
-    float current_balance = 500.0;
-    int option;
+    int user_index = -1;
+    int option; 
+    float current_balance; 
+
+    // Login
+    while (user_index == -1) {
+        user_index = login();
+    }
+
+    // Set balance for this user
+    current_balance = balances[user_index];
 
     do {
         printf("\n==== ATM MENU ====\n");
@@ -106,6 +124,7 @@ int main() {
         printf("2. Deposit\n");
         printf("3. Withdraw\n");
         printf("4. Exit\n");
+        printf("5. View Transaction History\n");
         printf("Choose an option: ");
         scanf("%d", &option);
 
@@ -117,16 +136,22 @@ int main() {
                 depositing(&current_balance);
                 break;
             case 3:
-                withdrawing(&current_balance); // ← YOUR FUNCTION
+                withdrawing(&current_balance);
                 break;
             case 4:
                 printf("Thank you for using the ATM.\n");
+                break;
+            case 5:
+                view_transactions();
                 break;
             default:
                 printf("Invalid option. Try again.\n");
         }
 
     } while(option != 4);
+
+    // Update balance back to user
+    balances[user_index] = current_balance;
 
     return 0;
 }
